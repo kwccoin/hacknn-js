@@ -3,8 +3,8 @@ addEventListener('load', function(e) {
 });
 
 
-var author = "Meniny";
-console.log("The Author is " + author);
+var author = "KWCC Coin";
+console.log("The Student is " + author);
 
 var multiplyGate = function(){ };
 multiplyGate.prototype = {
@@ -49,6 +49,8 @@ addGate.prototype = {
     this.u1.grad += 1 * this.utop.grad;
   }
 }
+
+/* 
 
 var sigmoidGate = function() { 
   // helper function
@@ -132,6 +134,7 @@ console.log('x_grad(0.105): ' + x_grad); // prints
 console.log('y_grad(0.210): ' + y_grad); // prints 
 
 // gradients [-0.105, 0.315, 0.105, 0.105, 0.210]. N
+*/
 
 // A circuit: it takes 5 Units (x,y,a,b,c) and outputs a single Unit
 // It can also compute the gradient w.r.t. its inputs
@@ -251,3 +254,27 @@ for(var iter = 0; iter < 400; iter++) {
   }
 }
 
+/* // simpler cde
+
+var a = 1, b = -2, c = -1; // initial parameters
+for(var iter = 0; iter < 400; iter++) {
+  // pick a random data point
+  var i = Math.floor(Math.random() * data.length);
+  var x = data[i][0];
+  var y = data[i][1];
+  var label = labels[i];
+
+  // compute pull
+  var score = a*x + b*y + c;
+  var pull = 0.0;
+  if(label === 1 && score < 1) pull = 1;
+  if(label === -1 && score > -1) pull = -1;
+
+  // compute gradient and update parameters
+  var step_size = 0.01;
+  a += step_size * (x * pull - a); // -a is from the regularization
+  b += step_size * (y * pull - b); // -b is from the regularization
+  c += step_size * (1 * pull);
+}
+
+*/
